@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+_ide_helper_models.php
 _ide_helper.php
 .env
 .phpstorm.meta.php
