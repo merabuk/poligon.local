@@ -24,7 +24,7 @@ class CreateBlogPostsTable extends Migration
 
             $table->text('excerpt')->nullable();
 
-            $table->text('conten_raw');
+            $table->text('content_raw');
             $table->text('content_html');
 
             $table->boolean('is_published')->default(false);
