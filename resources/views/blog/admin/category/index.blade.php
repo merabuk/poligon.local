@@ -19,7 +19,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($paginator as $item)
-                                    @php /** @var \App\Models\BlogCategory $item*/ @endphp
+                                    @php /** @var \App\Models\BlogCategory $item */ @endphp
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>
@@ -27,7 +27,7 @@
                                                 {{ $item->title }}
                                             </a>
                                         </td>
-                                        <td @if(in_array($item->parent_id, [0, 1])) style="..." @endif>
+                                        <td @if (in_array($item->parent_id, [0, 1])) style="color:#ccc" @endif>
                                             {{ $item->parent_id }} {{-- $item->parentCategory->title --}}
                                         </td>
                                     </tr>
@@ -38,5 +38,17 @@
                 </div>
             </div>
         </div>
+        @if ($paginator->total() > $paginator->count())
+            <br/>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ $paginator->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
