@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Blog\Admin\BaseController;
 use App\Models\BlogPost;
 use App\Repositories\BlogPostRepository;
+use App\Repositories\BlogCategoryRepository;
 
 /**
  * Управление статьями блога
@@ -20,6 +21,11 @@ class PostController extends BaseController
     private $blogPostRepository;
 
     /**
+     * @var BlogCategoryRepository
+     */
+    private $blogCategoryRepository;
+
+    /**
      * PostController constructor.
      */
     public function __construct()
@@ -27,6 +33,7 @@ class PostController extends BaseController
         parent::__construct();
 
         $this->blogPostRepository = app(BlogPostRepository::class);
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
     /**
@@ -81,7 +88,15 @@ class PostController extends BaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__, $id);
+        $item = $this->blogPostRepository->getEdit($id);
+
+        if (empty($item)) {
+            abort(404);
+        }
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+
+        return view('blog.admin.posts.edit',
+            compact('item', 'categoryList'));
     }
 
     /**

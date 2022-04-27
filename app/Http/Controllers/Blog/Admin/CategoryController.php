@@ -96,8 +96,6 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        // $item = BlogCategory::findOrFail($id);
-        // $categoryList = BlogCategory::all();
         $item = $this->blogCategoryRepository->getEdit($id);
 
         if (empty($item)) {
