@@ -64,20 +64,14 @@ class CategoryController extends BaseController
     {
         $data = $request->input();
 
-        if (empty($data['slug'])) {
-            $data['slug'] = str_slug($data['title']);
-        }
-
         $item = (new BlogCategory())->create($data);
 
         if ($item) {
-            return redirect()
-                ->route('blog.admin.categories.edit', $item->id)
-                ->with(['success' => 'Успешно сохранено']);
+            return redirect()->route('blog.admin.categories.edit', [$item->id])
+                             ->with(['success' => 'Успешно сохранено']);
         } else {
-            return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
-                ->wuthInput();
+            return back()->withErrors(['msg' => 'Ошибка сохранения'])
+                         ->wuthInput();
         }
     }
 
@@ -97,8 +91,7 @@ class CategoryController extends BaseController
         }
         $categoryList = $this->blogCategoryRepository->getForComboBox();
 
-        return view('blog.admin.categories.edit',
-            compact('item', 'categoryList'));
+        return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -113,9 +106,8 @@ class CategoryController extends BaseController
         $item = $this->blogCategoryRepository->getEdit($id);
 
         if (empty($item)) {
-            return back()
-                ->withErrors(['msg' => "Запись id=[{$id}] не найдена"])
-                ->withInput();
+            return back()->withErrors(['msg' => "Запись id=[{$id}] не найдена"])
+                         ->withInput();
         }
 
         $data = $request->all();
@@ -123,13 +115,11 @@ class CategoryController extends BaseController
         $result = $item->update($data);
 
         if ($result) {
-            return redirect()
-                ->route('blog.admin.categories.edit', $item->id)
-                ->with(['success' => 'Успешно сохранено']);
+            return redirect()->route('blog.admin.categories.edit', [$item->id])
+                             ->with(['success' => 'Успешно сохранено']);
         } else {
-            return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
-                ->wuthInput();
+            return back()->withErrors(['msg' => 'Ошибка сохранения'])
+                         ->wuthInput();
         }
     }
 }
