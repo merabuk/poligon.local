@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Blog\Admin\BaseController;
 use App\Repositories\BlogCategoryRepository;
+use Illuminate\Support\Str;
 
 /**
  * Управление категориями блога
@@ -127,7 +128,7 @@ class CategoryController extends BaseController
         $data = $request->all();
 
         if (empty($data['slug'])) {
-            $data['slug'] = str_slug($data['title']);
+            $data['slug'] = Str::slug($data['title']);
         }
 
         $result = $item->update($data);

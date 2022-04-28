@@ -81,7 +81,7 @@
                             <input name="is_published"
                                     type="checkbox"
                                     class="form-check-input"
-                                    value="{{ old('is_published', $item->is_published) }}"
+                                    value="1"
                                     @if (old('is_published', $item->is_published))
                                         checked="checked"
                                     @endif

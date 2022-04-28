@@ -10,7 +10,7 @@ $factory->define(\App\Models\BlogPost::class, function (Faker $faker) {
     $createdAt = $faker->dateTimeBetween('-3 months', '-2 days');
 
     $data = [
-        'category_id'   => rand(1, 11),
+        'category_id'   => rand(2, 11),
         'user_id'       => (rand(1, 5) == 5) ? 1 : 2,
         'title'         => $title,
         'slug'          => Str::slug($title),
