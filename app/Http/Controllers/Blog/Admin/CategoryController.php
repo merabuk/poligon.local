@@ -6,7 +6,6 @@ use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Blog\Admin\BaseController;
 use App\Repositories\BlogCategoryRepository;
 use Illuminate\Support\Str;
 
@@ -36,7 +35,6 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        // $paginator = BlogCategory::paginate(5);
         $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
 
         return view('blog.admin.categories.index', compact('paginator'));
@@ -50,7 +48,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $item = new BlogCategory();
-        // $categoryList = BlogCategory::all();
+
         $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
@@ -70,11 +68,6 @@ class CategoryController extends BaseController
             $data['slug'] = str_slug($data['title']);
         }
 
-        // Создает объект, но не добавляет в БД
-        // $item = new BlogCategory($data);
-        // $item->save();
-
-        // Создает объект, и добавляет в БД
         $item = (new BlogCategory())->create($data);
 
         if ($item) {
@@ -111,7 +104,7 @@ class CategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BlogCategoryUpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -126,10 +119,6 @@ class CategoryController extends BaseController
         }
 
         $data = $request->all();
-
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title']);
-        }
 
         $result = $item->update($data);
 
