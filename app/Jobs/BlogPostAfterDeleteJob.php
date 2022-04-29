@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class BlogPostAfterDeleteJob implements ShouldQueue
 {
@@ -36,6 +37,6 @@ class BlogPostAfterDeleteJob implements ShouldQueue
      */
     public function handle()
     {
-        log()->warning("Удалена запись в блоге [{$this->blogPostId}]");
+        Log::warning("Удалена запись в блоге [{$this->blogPostId}]");
     }
 }
