@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GenerateCatalog\GenerateCatalogMainJob;
+use App\Jobs\ProcessVideoJob;
 use App\Models\BlogPost;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class DiggingDeeperController extends Controller
 {
@@ -128,5 +129,25 @@ class DiggingDeeperController extends Controller
 //        $sortedDescCollection = $collection->sortByDesc('item_id');
 //
 //        dd(compact('sortedSimpleCollection', 'sortedAscCollection', 'sortedDescCollection'));
+    }
+
+    public function processVideo()
+    {
+        ProcessVideoJob::dispatch()
+            // Отсрочка выполнения задания от момента помещения в очередь в секундах.
+            // Не влияет на паузу между попытками выполнять задачу.
+            //->delay(10)
+            //->onQueue('name_of_queue')
+        ;
+    }
+
+    /**
+     * @link https://poligon.local/digging_deeper/prepare-catalog
+     *
+     * php artisan queue:listen --queue=generate-catalog --tries=3 --delay=10
+     */
+    public function prepareCatalog()
+    {
+        GenerateCatalogMainJob::dispatch();
     }
 }
