@@ -47,10 +47,10 @@ class DiggingDeeperController extends Controller
 //        $result['first'] = $collection->first();
 //        $result['last'] = $collection->last();
 
-        $result['where']['data'] = $collection
-            ->where('category_id', 10)
-            ->values()
-            ->keyBy('id');
+//        $result['where']['data'] = $collection
+//            ->where('category_id', 10)
+//            ->values()
+//            ->keyBy('id');
 //
 //        $result['where']['count'] = $result['where']['data']->count();
 //        $result['where']['isEmpty'] = $result['where']['data']->isEmpty();
@@ -69,19 +69,19 @@ class DiggingDeeperController extends Controller
 //        $result['where_first'] = $collection->firstWhere('created_at', '>', '2022-04-02 21:49:01');
 
         // Базовая переменная не изменится. Просто вернется измененная версия.
-        $result['map']['all'] = $collection->map(function (array $item) {
-           $newItem = new \stdClass();
-           $newItem->item_id = $item['id'];
-           $newItem->item_name = $item['title'];
-           $newItem->exists = is_null($item['deleted_at']);
-
-           return $newItem;
-        });
-
-        $result['map']['not_exists'] = $result['map']['all']
-            ->where('exists', '=', false)
-            ->values()
-            ->keyBy('item_id');
+//        $result['map']['all'] = $collection->map(function (array $item) {
+//           $newItem = new \stdClass();
+//           $newItem->item_id = $item['id'];
+//           $newItem->item_name = $item['title'];
+//           $newItem->exists = is_null($item['deleted_at']);
+//
+//           return $newItem;
+//        });
+//
+//        $result['map']['not_exists'] = $result['map']['all']
+//            ->where('exists', '=', false)
+//            ->values()
+//            ->keyBy('item_id');
 
 //        dd($result);
 
@@ -96,14 +96,37 @@ class DiggingDeeperController extends Controller
 //           return $newItem;
 //        });
 //
-//        dd($collection);
+//        $newItem = new \stdClass();
+//        $newItem->id = 9999;
+//
+//        $newItem2 = new \stdClass();
+//        $newItem2->id = 8888;
+//
+//        // Установить элемент в начало коллекции
+//        $newItemFirst = $collection->prepend($newItem)->first();
+//        // Установить элемент в конец колекции
+//        $newItemLast = $collection->push($newItem2)->last();
+//        // Забрать элемент из колекции
+//        $pulledItem = $collection->pull(1);
+//
+//        dd(compact('collection', 'newItemFirst', 'newItemLast', 'pulledItem'));
 
-        $newItem = new \stdClass();
-        $newItem->id = 9999;
+//        // Фильтрация. Замена orWhere()
+//        $filtered = $collection->filter(function ($item) {
+//            $byDay = $item->created_at->isFriday();
+//            $byDate = $item->created_at->day == 11;
+//
+//            $result = $byDay && $byDate;
+//
+//            return $result;
+//        });
+//
+//        dd(compact('filtered'));
 
-        $newItem2 = new \stdClass();
-        $newItem2->id = 8888;
-
-        // Установить элемент в начало коллекции
+//        $sortedSimpleCollection = collect([5, 3, 1, 2, 4])->sort()->values();
+//        $sortedAscCollection = $collection->sortBy('created_at');
+//        $sortedDescCollection = $collection->sortByDesc('item_id');
+//
+//        dd(compact('sortedSimpleCollection', 'sortedAscCollection', 'sortedDescCollection'));
     }
 }
