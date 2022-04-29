@@ -171,7 +171,7 @@ class PostController extends BaseController
      *
      * @param int  $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function restore($id)
     {
