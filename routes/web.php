@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    HomeController,
+    DiggingDeeperController,
+};
+use App\Http\Controllers\Blog\{
+    PostController as PublicBlogPostController,
+    Admin\CategoryController,
+    Admin\PostController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -19,42 +28,38 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'digging_deeper',], function() {
-    Route::get('collections', 'DiggingDeeperController@collections')
+Route::prefix('digging_deeper')->group(function() {
+    Route::get('collections', [DiggingDeeperController::class,'collections'])
         ->name('digging_deeper.collections');
 
-    Route::get('process-video', 'DiggingDeeperController@processVideo')
+    Route::get('process-video', [DiggingDeeperController::class,'processVideo'])
         ->name('digging_deeper.processVideo');
 
-    Route::get('prepare-catalog', 'DiggingDeeperController@prepareCatalog')
+    Route::get('prepare-catalog', [DiggingDeeperController::class,'prepareCatalog'])
         ->name('digging_deeper.prepareCatalog');
 });
 
-Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function() {
-    Route::resource('posts', 'PostController')->names('blog.posts');
+Route::prefix('blog')->group(function() {
+    Route::resource('posts', PublicBlogPostController::class)->names('blog.posts');
 });
 
 //> Админка блога
-$groupData = [
-    'namespace' => 'Blog\Admin',
-    'prefix'    => 'admin/blog',
-];
-Route::group($groupData, function() {
+Route::prefix('admin/blog')->group(function() {
     //Blog Category
     $methods = ['index', 'edit', 'store', 'update', 'create',];
-    Route::resource('categories', 'CategoryController')
+    Route::resource('categories', CategoryController::class)
         ->only($methods)
         ->names('blog.admin.categories');
 
     // BlogPost
-    Route::resource('posts', 'PostController')
+    Route::resource('posts', PostController::class)
         ->except(['show'])
         ->names('blog.admin.posts');
-    Route::get('posts/restore/one/{post}', 'PostController@restore')
+    Route::get('posts/restore/one/{post}', [PostController::class, 'restore'])
         ->name('blog.admin.posts.restore');
 });
 //<
 
-// Route::resource('rest', 'RestTestController')->names('restTest');
+//// Route::resource('rest', [\App\Http\Controllers\RestTestController::class])->names('restTest');

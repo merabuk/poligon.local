@@ -16,10 +16,10 @@
                 <div class="card-subtitle mb-2 text-muted"></div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#maindata" role="tab">Основные данные</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#maindata" role="tab">Основные данные</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#adddata" role="tab">Доп. данные</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#adddata" role="tab">Доп. данные</a>
                     </li>
                 </ul>
                 <br/>

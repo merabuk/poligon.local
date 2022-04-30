@@ -9,7 +9,7 @@
                 <div class="card-title"></div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#maindata" role="tab">Основные данные</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#maindata" role="tab">Основные данные</a>
                     </li>
                 </ul>
                 <br/>

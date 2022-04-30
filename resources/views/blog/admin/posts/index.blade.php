@@ -5,12 +5,10 @@
          @if (session('soft-deleted') && session('restore-route'))
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <div class="alert alert-success" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         {{ session()->get('soft-deleted') }}
                         <a href="{{ session()->get('restore-route') }}">Хотите восстановить?</a>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
             </div>
