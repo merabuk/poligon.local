@@ -1,3 +1,11 @@
+## О репозитории Poligon.local
+
+Это пособие для знакомства и обучения с фреймворком Laravel
+
+Данный курс можно просмотреть по данной [ссылке](https://www.youtube.com/playlist?list=PLoonZ8wII66iP0fJPHhkLXa3k7CMef9ak).
+
+Оргомное спасибо [Дмитрию Афанасьеву](https://www.youtube.com/c/DmitryAfanasyev/about) автору этого курса.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

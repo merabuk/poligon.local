@@ -1,12 +1,14 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeders.
      *
      * @return void
      */
@@ -21,10 +23,10 @@ class UsersTableSeeder extends Seeder
             [
                 'name'      => 'Автор',
                 'email'     => 'author1@g.g',
-                'password'  => bcrypt('123123'),
+                'password'  => bcrypt('123123123'),
             ]
         ];
 
-        DB::table('users')->insert($data);
+        \DB::table('users')->insert($data);
     }
 }
