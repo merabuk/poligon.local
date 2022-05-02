@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
  *
  * @package App\Repositories
  */
-class BlogPostREpository extends CoreRepository
+class BlogPostRepository extends CoreRepository
 {
     /**
      * @return string

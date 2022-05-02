@@ -30,23 +30,23 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::prefix('digging_deeper')->group(function() {
-    Route::get('collections', [DiggingDeeperController::class,'collections'])
+Route::prefix('digging_deeper')->group(function () {
+    Route::get('collections', [DiggingDeeperController::class, 'collections'])
         ->name('digging_deeper.collections');
 
-    Route::get('process-video', [DiggingDeeperController::class,'processVideo'])
+    Route::get('process-video', [DiggingDeeperController::class, 'processVideo'])
         ->name('digging_deeper.processVideo');
 
-    Route::get('prepare-catalog', [DiggingDeeperController::class,'prepareCatalog'])
+    Route::get('prepare-catalog', [DiggingDeeperController::class, 'prepareCatalog'])
         ->name('digging_deeper.prepareCatalog');
 });
 
-Route::prefix('blog')->group(function() {
+Route::prefix('blog')->group(function () {
     Route::resource('posts', PublicBlogPostController::class)->names('blog.posts');
 });
 
 //> Админка блога
-Route::prefix('admin/blog')->group(function() {
+Route::prefix('admin/blog')->group(function () {
     //Blog Category
     $methods = ['index', 'edit', 'store', 'update', 'create',];
     Route::resource('categories', CategoryController::class)

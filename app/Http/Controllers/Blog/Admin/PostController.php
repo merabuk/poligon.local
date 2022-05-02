@@ -67,7 +67,7 @@ class PostController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  BlogPostCreateRequest  $request
+     * @param BlogPostCreateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(BlogPostCreateRequest $request)
@@ -80,10 +80,10 @@ class PostController extends BaseController
             $this->dispatch($job);
 
             return redirect()->route('blog.admin.posts.edit', [$item->id])
-                             ->with(['success' => 'Успешно сохранено']);
+                ->with(['success' => 'Успешно сохранено']);
         } else {
             return back()->withErrors(['msg' => 'Ошибка сохранения'])
-                         ->withInput();
+                ->withInput();
         }
     }
 
@@ -101,7 +101,7 @@ class PostController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
     public function edit($id)
@@ -119,8 +119,8 @@ class PostController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  BlogPostUpdateRequest  $request
-     * @param  int  $id
+     * @param BlogPostUpdateRequest $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(BlogPostUpdateRequest $request, $id)
@@ -129,7 +129,7 @@ class PostController extends BaseController
 
         if (empty($item)) {
             return back()->withErrors(['msg' => "Запись id=[{$id}] не найдена"])
-                         ->withInput();
+                ->withInput();
         }
 
         $data = $request->all();
@@ -138,17 +138,17 @@ class PostController extends BaseController
 
         if ($result) {
             return redirect()->route('blog.admin.posts.edit', [$item->id])
-                             ->with(['success' => 'Успешно сохранено']);
+                ->with(['success' => 'Успешно сохранено']);
         } else {
             return back()->withErrors(['msg' => 'Ошибка сохранения'])
-                         ->withInput();
+                ->withInput();
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
@@ -178,10 +178,10 @@ class PostController extends BaseController
             //< Варианты запуска
 
             return redirect()->route('blog.admin.posts.index')
-                             ->with([
-                                 'soft-deleted' => "Запись id[$id] удалена.",
-                                 'restore-route' => route('blog.admin.posts.restore', $id),
-                             ]);
+                ->with([
+                    'soft-deleted' => "Запись id[$id] удалена.",
+                    'restore-route' => route('blog.admin.posts.restore', $id),
+                ]);
         } else {
             return back()->withErrors(['msg' => 'Ошибка удаления']);
         }
@@ -190,7 +190,7 @@ class PostController extends BaseController
     /**
      * Восстановить запись в базе
      *
-     * @param int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
