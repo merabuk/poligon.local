@@ -62,4 +62,8 @@ Route::prefix('admin/blog')->group(function() {
 });
 //<
 
-//// Route::resource('rest', [\App\Http\Controllers\RestTestController::class])->names('restTest');
+// Route::resource('rest', RestTestController::class)->names('restTest');
+
+Route::prefix('structural')->group(function () {
+    Route::get('decorator', [\App\Http\Controllers\StructuralPatternsController::class, 'Decorator']);
+});
