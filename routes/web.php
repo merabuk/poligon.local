@@ -66,4 +66,5 @@ Route::prefix('admin/blog')->group(function() {
 
 Route::prefix('structural')->group(function () {
     Route::get('decorator', [\App\Http\Controllers\StructuralPatternsController::class, 'Decorator']);
+    Route::get('proxy', [\App\Http\Controllers\StructuralPatternsController::class, 'proxy']);
 });
